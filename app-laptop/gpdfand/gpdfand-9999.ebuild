@@ -22,15 +22,21 @@ else
 	SRC_URI="https://github.com/efluffy/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
+src_prepare() {
+	epatch "${FILESDIR}/${PN}_service.patch"
+	eapply_user
+}
 
 src_install() {
 	systemd_dounit ${PN}.service
 	insinto "$(systemd_get_systemunitdir)-sleep"
 	insopts -m755
 	doins ${PN}
-	insinto /usr/local/bin
+	insinto /usr/bin
 	insopts -m755
 	newins ${PN}.pl ${PN}
+}
 
-	systemd_enable_service multi-user.target ${PN}.service
+pkg_postinst() {
+	mkdir -p /var/log/gpdfand
 }

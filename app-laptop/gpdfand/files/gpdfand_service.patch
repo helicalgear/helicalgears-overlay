@@ -1,0 +1,11 @@
+--- ./gpdfand.service
++++ ./gpdfand.service
+@@ -5,7 +5,7 @@
+ [Service]
+ Type=forking
+ PIDFile=/var/run/gpdfand.pid
+-ExecStart=/usr/local/bin/gpdfand
++ExecStart=/usr/bin/gpdfand
+ 
+ [Install]
+ WantedBy=multi-user.target
