@@ -35,8 +35,5 @@ src_install() {
 	insinto /usr/bin
 	insopts -m755
 	newins ${PN}.pl ${PN}
-}
-
-pkg_postinst() {
-	mkdir -p /var/log/gpdfand
+	dodir /var/log/gpdfand
 }
